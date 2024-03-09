@@ -4,7 +4,7 @@ class Solution:
     def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
         sn1 = set(nums1)
         sn2 = set(nums2)
-        intersection = sorted(list(sn1.intersection(sn2)))
+        intersection = sorted(sn1.intersection(sn2))
         if intersection: 
             return intersection[0]
         else:
