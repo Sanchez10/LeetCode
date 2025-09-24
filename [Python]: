@@ -1,0 +1,64 @@
+"""
+Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+Each letter in magazine can only be used once in ransomNote.
+
+Example 1:
+
+Input: ransomNote = "a", magazine = "b"
+Output: false
+
+Example 2:
+
+Input: ransomNote = "aa", magazine = "ab"
+Output: false
+
+Example 3:
+
+Input: ransomNote = "aa", magazine = "aab"
+Output: true
+ 
+Constraints:
+
+1 <= ransomNote.length, magazine.length <= 105
+ransomNote and magazine consist of lowercase English letters.
+
+Topics:
+- Hash Table
+- String
+- Counting
+"""
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        dict_ransomNote = {}
+        dict_magazine = {}
+        for letter in ransomNote:
+            if dict_ransomNote.get(letter):
+                dict_ransomNote[letter] += 1 
+            else:
+                dict_ransomNote[letter] = 1 
+        for letter in magazine:
+            if dict_magazine.get(letter):
+                dict_magazine[letter] += 1
+            else: 
+                dict_magazine[letter] = 1
+        for letter, qtd in dict_ransomNote.items():
+            if dict_magazine.get(letter):
+                if dict_magazine.get(letter) >= qtd:
+                    continue
+                else:
+                    return False
+            else:
+                return False
+        return True
+
+
+if __name__ == "__main__":
+    solution = Solution()
+    ransomNote = "a"
+    magazine = "b"
+    ransomNote1 = "aa"
+    magazine1 = "ab"
+    ransomNote2 = "aa"
+    magazine2 = "aab"
+    print(solution.canConstruct(ransomNote1, magazine1))
